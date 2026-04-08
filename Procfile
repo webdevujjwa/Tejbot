@@ -1,1 +1,1 @@
-worker: python tejbot.py
+worker: python bot.py
