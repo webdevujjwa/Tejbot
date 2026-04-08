@@ -32,24 +32,24 @@ async def on_message(message):
         try:
             url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
 
-response = requests.post(
-    url,
-    headers={
-        "Content-Type": "application/json",
-        "x-goog-api-key": API_KEY
-    },
-    json={
-        "contents": [
-            {
-                "parts": [
-                    {
-                        "text": "Your name is TEJ. Reply in English. " + user_message
-                    }
-                ]
-            }
-        ]
-    }
-)
+            response = requests.post(
+                url,
+                headers={
+                    "Content-Type": "application/json",
+                    "x-goog-api-key": API_KEY
+                },
+                json={
+                    "contents": [
+                        {
+                            "parts": [
+                                {
+                                    "text": "Your name is TEJ. Reply in English. " + user_message
+                                }
+                            ]
+                        }
+                    ]
+                }
+            )
 
             data = response.json()
 
@@ -60,7 +60,8 @@ response = requests.post(
 
             await message.reply(reply)
 
-        except:
+        except Exception as e:
+            print(e)
             await message.reply("Error")
 
 client.run(TOKEN)
